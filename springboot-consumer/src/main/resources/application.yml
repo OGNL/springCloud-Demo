@@ -1,0 +1,28 @@
+---
+server:
+  port: 8762
+
+spring:
+  application:
+    name: service-consumer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka/
+      
+#feign的配置，连接超时及读取超时配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  # 开启断路器
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
