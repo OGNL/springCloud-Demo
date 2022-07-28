@@ -12,6 +12,7 @@
         <module>springboot-eureka</module>
         <module>springboot-producer</module>
         <module>springboot-consumer</module>
+        <!--<module>springboot-zuul</module>-->
     </modules>
 
 

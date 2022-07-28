@@ -1,0 +1,32 @@
+---
+server:
+  port: 8764
+
+spring:
+  application:
+    name: service-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka/
+
+
+zuul:
+  host:
+    connect-timeout-millis: 2000
+    socket-timeout-millis: 10000
+  routes:
+    test-service:
+      path: /test/**
+      # 服务名称: 如果使用服务治理框架那么填写服务名称，否则自定义服务名称
+      serviceId: test-service
+      # 是否开启重试，具体重试设置是在Ribbon的配置中设置
+      retryable: true
+
+# 服务的相关配置
+test-service:
+  ribbon:
+    # 在提供的server列表中获取服务实例
+#    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: 127.0.0.1:8762, 127.0.0.1:9001
